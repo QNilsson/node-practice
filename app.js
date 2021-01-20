@@ -12,15 +12,17 @@
 
 //Thor's Class
 import express from 'express';
+import { testRouter } from './routes/test.route.js'
+
+
 const app = express()
 let port = process.env.PORT;
 if(port == null || port == ''){
 	port = 3000;
 }
 
-app.get('/', (req, res)=>{
-	res.send("Hello World this is my node practice repo")
-})
+app.use('/', testRouter)
+
 
 app.listen(port, () =>{
 	console.log(`Example app listening at http://localhost:${port}`)
