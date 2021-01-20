@@ -3,18 +3,17 @@
   "version": "1.0.0",
   "description": "my first node practice program ",
   "main": "app.js",
-  "type":"module",
-
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node app.js",
-    "custom":"sleep 2 && node app.js"
+    "start": "node app.js",
+    "custom": "sleep 2 && node app.js"
   },
   "author": "Quinn Nilsson",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pug": "^3.0.0"
   }
- 
 }
