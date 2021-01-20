@@ -1,6 +1,22 @@
+//Max's class
+// import express from 'express';
+
+// const http = require('/http');
+
+
+// createServer((req, res) =>{
+// 	console.log(req);
+// });
+
+// server.listen(3000)
+
+//Thor's Class
 import express from 'express';
 const app = express()
-const port = 3000
+let port = process.env.PORT;
+if(port == null || port == ''){
+	port = 3000;
+}
 
 app.get('/', (req, res)=>{
 	res.send("Hello World this is my node practice repo")

@@ -6,6 +6,7 @@ the sync callbacks are executed at the same time as the higher-order function th
 
 async callbakcs are executed at a later time than the higher-order functions. async callbacks are non-blocking */
 import axios from 'axios';
+import fs from 'fs'; //file system
 
 const greet = name => {
   return `Hello, ${name}!`;
@@ -36,15 +37,28 @@ setTimeout (() => {
 console.log ('hello');
 console.log ('hi');
 
-const getPokeData = () => {
-  return axios.get('https://pokeapi.co/api/v2/pokemon/snorlax').then(
-	  ({data}) => {//data destructuring
-		  return data//becomes another promise
-	  }
-  ).catch((error) => {
-	  //handle the error
-	  console.error(error)
-  })
+async function getPokeData () {
+  //todo: convert to async/await
+  return axios
+    .get ('https://pokeapi.co/api/v2/pokemon/snorlax')
+    .then (({data}) => {
+      //data destructuring
+      return data; //becomes another promise
+    })
+    .catch (error => {
+      //handle the error
+      console.error (error);
+    });
 }
 
-getPokeData().then(data => console.log(data))
+async function main () {
+  const snorlax = await getPokeData();
+  try {
+    await fs.writeFile('snorlax.json', JSON.stringify(snorlax, null, 2));
+    console.log ('the file has been saved');
+  } catch (err) {
+    console.error ('could not write file');
+  }
+}
+
+main ();

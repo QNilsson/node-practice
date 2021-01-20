@@ -1,15 +1,15 @@
 const itmes = [
 	{
 		id:'1',
-		name:'One',
+		name:item.name,
 	},
 	{
 		id:'2',
-		name:'Two',
+		name:item.name,
 	},
 ]
 
-const results = items.map((item)=>{
+const flatResults = items.flatMap((item)=>{
 	return[
 		{
 			id:'3',
