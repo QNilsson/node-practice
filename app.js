@@ -14,6 +14,7 @@
 import express from 'express';
 import path from 'path';
 import { testRouter } from './routes/test.route.js'
+import { newRouter } from './routes/new.route.js'
 
 
 const app = express()
@@ -22,13 +23,17 @@ if(port == null || port == ''){
 	port = 3000;
 }
 
-app.set("views", path.join( "views"));
-app.set("view engine", "pug");
-app.use(express.static(path.join( "public")));
+//from Max
+app.use(newRouter, (req, res, next) =>{
+	console.log('This is the new router')
+	next()
+})
 
-
-
-app.use('/', testRouter)
+app.use('/', (req, res, next)=>{
+	console.log("this is the default router")
+	res.send('<h1>This is default</h1>')
+	
+})
 
 
 app.listen(port, () =>{
