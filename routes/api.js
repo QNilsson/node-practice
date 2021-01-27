@@ -2,11 +2,11 @@ import { Router } from 'express'
 import path from 'path';
 const __dirname = path.resolve();
 
-export const second = Router()
+export const api = Router()
 
 
 
-second.get('/', (req, res)=>{
+api.get('/', (req, res)=>{
 	res.json({
 		name: "Quinn",
 		color: "orange",
@@ -17,5 +17,6 @@ second.get('/', (req, res)=>{
 			'animals'
 		]
 	})
+	
 	
 })

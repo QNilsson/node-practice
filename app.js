@@ -1,31 +1,16 @@
-//Max's class
-// import express from 'express';
-
-// const http = require('/http');
-
-
-// createServer((req, res) =>{
-// 	console.log(req);
-// });
-
-// server.listen(3000)
 
 //Thor's Class
 import express from 'express';
 import path from 'path';
 const __dirname = path.resolve();
-import { first } from './routes/first.js'
-import { second } from './routes/second.js'
+import { route } from './routes/route.js'
+import { api } from './routes/api.js'
 const app = express()
 
+const port = process.env.PORT || 5000
 
-let port = process.env.PORT;
-if(port == null || port == ''){
-	port = 3000;
-}
-
-app.use('/', first);
-app.use('/second',second);
+app.use('/', route);
+app.use('/api',api);
 
 app.use((req, res, next) =>{
 	res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
