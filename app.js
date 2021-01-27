@@ -13,27 +13,36 @@
 //Thor's Class
 import express from 'express';
 import path from 'path';
-import { testRouter } from './routes/test.route.js'
-import { newRouter } from './routes/new.route.js'
-
-
+const __dirname = path.resolve();
+import { first } from './routes/first.js'
+import { second } from './routes/second.js'
 const app = express()
+
+
 let port = process.env.PORT;
 if(port == null || port == ''){
 	port = 3000;
 }
 
-//from Max
-app.use(newRouter, (req, res, next) =>{
-	console.log('This is the new router')
-	next()
+app.use(first);
+app.use(second);
+
+app.use((req, res, next) =>{
+	res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
 })
 
-app.use('/', (req, res, next)=>{
-	console.log("this is the default router")
-	res.send('<h1>This is default</h1>')
+
+//from Max
+// app.use(newRouter, (req, res, next) =>{
+// 	console.log('This is the new router')
+// 	next()
+// })
+
+// app.use('/', (req, res, next)=>{
+// 	console.log("this is the default router")
+// 	res.send('<h1>This is defajhjult</h1>')
 	
-})
+// })
 
 
 app.listen(port, () =>{
