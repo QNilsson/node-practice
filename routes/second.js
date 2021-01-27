@@ -6,7 +6,16 @@ export const second = Router()
 
 
 
-second.get('/second', (req, res, next)=>{
-	res.send("This should be json")
+second.get('/', (req, res)=>{
+	res.json({
+		name: "Quinn",
+		color: "orange",
+		pet: "cats",
+		likes: [
+			'decorating',
+			'exercising',
+			'animals'
+		]
+	})
 	
 })

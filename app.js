@@ -24,8 +24,8 @@ if(port == null || port == ''){
 	port = 3000;
 }
 
-app.use(first);
-app.use(second);
+app.use('/', first);
+app.use('/second',second);
 
 app.use((req, res, next) =>{
 	res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
