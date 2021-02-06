@@ -1,33 +1,26 @@
 
 //Thor's Class
-import express from 'express';
-import path from 'path';
-const __dirname = path.resolve();
-import { route } from './routes/route.js'
-import { api } from './routes/api.js'
-const app = express()
+import express from 'express'
+import bodyParser from 'body-parser'
+import { apiRouter } from './routes/api.route.js'
+import { productRouter } from './routes/product.route.js'
 
 const port = process.env.PORT || 5000
 
-app.use('/', route);
-app.use('/api',api);
+const app = express()
+
+app.use(bodyParser.urlencoded({extend:false}))
+
+app.use(express.static('public'))
+
+app.use('/api', apiRouter)
+
+app.use('/product', productRouter)
 
 app.use((req, res, next) =>{
-	res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
+	res.status(404).send('<h1>Page not found</h1>')
 })
 
-
-//from Max
-// app.use(newRouter, (req, res, next) =>{
-// 	console.log('This is the new router')
-// 	next()
-// })
-
-// app.use('/', (req, res, next)=>{
-// 	console.log("this is the default router")
-// 	res.send('<h1>This is defajhjult</h1>')
-	
-// })
 
 
 app.listen(port, () =>{
