@@ -4,9 +4,10 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { apiRouter } from './routes/api.route.js'
 import { productRouter } from './routes/product.route.js'
-import { mongoConnect } from './util/database.js'
+import mongoose from 'mongoose';
+import * as dotenv from 'dotenv'
 
-
+dotenv.config()
 
 const port = process.env.PORT || 5000
 
@@ -24,11 +25,18 @@ app.use((req, res, next) =>{
 	res.status(404).send('<h1>Page not found</h1>')
 })
 
-mongoConnect((client ) =>{
-	console.log(client);
-	app.listen(5000);
-})
+const main = async() =>{
+	await mongoose.connect(`${process.env.MONGO_CONNECTION_STRING}`,
+	{
+		useNewUrlParser:true,
+		useUnifiedTopology:true,
+	})
 
+	app.listen(port, () =>{
+		console.log(`Example app listening at http://localhouse:${port}`)
+	})
+}
+main()
 // app.listen(port, () =>{
 // 	console.log(`Example app listening at http://localhost:${port}`)
 // })
