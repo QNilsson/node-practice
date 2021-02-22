@@ -41,16 +41,16 @@ export const getProductById = async (req, res) => {
 
 export const postEditProduct = async (req, res) => {
   const prodId = req.body.productId;
-  const updatedTitle = req.body.title;
-  const updatedPrice = req.body.price;
-  const updatedDescription = req.body.description;
-  const updatedImageUrl = req.body.imageUrl;
-
-  const product = await Product.findById (prodId);
-  product.title = updatedTitle;
-  product.price = updatedPrice;
-  product.description = updatedDescription;
-  product.imageUrl = updatedImageUrl;
-
-  return product.save ();
+  const updatedObj = {
+    title: req.body.title,
+    price: req.body.price,
+    description: req.body.description,
+    imageUrl: req.body.imageUrl,
+  };
+  try {
+    const product = await Product.findByIdAndUpdate (prodId, updatedObj);
+    res.json (product);
+  } catch (err) {
+    res.status (400).json ({Message: `Could not update: ${err}`});
+  }
 };
