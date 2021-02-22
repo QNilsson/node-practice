@@ -39,7 +39,7 @@ export const getProductById = async (req, res) => {
   }
 };
 
-export const postEditProduct = async (req, res) => {
+export const putEditProduct = async (req, res) => {
   const prodId = req.body.productId;
   const updatedObj = {
     title: req.body.title,
@@ -48,9 +48,23 @@ export const postEditProduct = async (req, res) => {
     imageUrl: req.body.imageUrl,
   };
   try {
-    const product = await Product.findByIdAndUpdate (prodId, updatedObj);
+    const product = await Product.findByIdAndUpdate (prodId, updatedObj, {new: true});
     res.json (product);
   } catch (err) {
     res.status (400).json ({Message: `Could not update: ${err}`});
   }
 };
+
+export const deleteProduct = async (req, res) =>{
+  const prodId = req.body.productId
+  try{
+    const deletedProduct = await Product.findByIdAndRemove(prodId)
+    if(!deleteProduct){
+      res.status(400).json({Message: `Product to delete not found`})
+    }
+    console.log(`Deleted the product: ${deletedProduct}`)
+    res.redirect('/product')
+  }catch(err){
+    res.status(400).json({Message: `Invalid ID: ${err}`})
+  }
+}
