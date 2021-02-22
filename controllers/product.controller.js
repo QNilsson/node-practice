@@ -35,23 +35,22 @@ export const getProductById = async (req, res) => {
     }
     res.json (product);
   } catch (err) {
-    res.status(400).json({Message: `Invalid ID:${err}`})
+    res.status (400).json ({Message: `Invalid ID:${err}`});
   }
 };
 
-export const postEditProduct = async (req, res) =>{
-	const prodId = req.body.productId
-	const updatedTitle = req.body.title
-    const updatedPrice = req.body.price
-    const updatedDescription = req.body.description
-    const updatedImageUrl = req.body.imageUrl
+export const postEditProduct = async (req, res) => {
+  const prodId = req.body.productId;
+  const updatedTitle = req.body.title;
+  const updatedPrice = req.body.price;
+  const updatedDescription = req.body.description;
+  const updatedImageUrl = req.body.imageUrl;
 
-	const product = await Product.findById(prodId)
-	product.title = updatedTitle
-	product.price = updatedPrice
-	product.description = updatedDescription
-	product.imageUrl = updatedImageUrl
+  const product = await Product.findById (prodId);
+  product.title = updatedTitle;
+  product.price = updatedPrice;
+  product.description = updatedDescription;
+  product.imageUrl = updatedImageUrl;
 
-	return product.save()
-
-}
+  return product.save ();
+};
