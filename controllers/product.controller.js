@@ -60,10 +60,11 @@ export const deleteProduct = async (req, res) =>{
   try{
     const deletedProduct = await Product.findByIdAndRemove(prodId)
     if(!deleteProduct){
-      res.status(400).json({Message: `Product to delete not found`})
+      return res.status(400).json({Message: `Product to delete not found`})
     }
     console.log(`Deleted the product: ${deletedProduct}`)
-    res.redirect('/product')
+    //res.redirect('/product')
+   res.sendStatus(200)//a simple success
   }catch(err){
     res.status(400).json({Message: `Invalid ID: ${err}`})
   }
