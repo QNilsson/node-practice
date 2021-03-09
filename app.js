@@ -5,6 +5,9 @@ import {apiRouter} from './routes/api.route.js';
 import {productRouter} from './routes/product.route.js';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
+import cors from 'cors'
+
+mongoose.set('useFindAndModify', false);
 
 dotenv.config ();
 
@@ -12,11 +15,15 @@ const port = process.env.PORT || 5000;
 
 const app = express ();
 
+app.use(cors())
+
 app.use (
   bodyParser.urlencoded ({
     extend: false,
   })
 );
+
+app.use(express.json())
 
 app.use (express.static ('public'));
 
@@ -27,6 +34,8 @@ app.use (
 );
 
 app.use ('/product', productRouter);
+
+app.use('/recipe', recipeRouter)
 
 app.use ((req, res, next) => {
   res.status (404).send ('<h1>Page not found</h1>');
