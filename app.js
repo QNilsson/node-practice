@@ -1,7 +1,7 @@
 //Thor's Class
 import express from 'express';
 import bodyParser from 'body-parser';
-import {apiRouter} from './routes/api.route.js';
+import {recipeRouter} from './routes/recipe.router.js';
 import {productRouter} from './routes/product.route.js';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
@@ -28,10 +28,10 @@ app.use(express.json())
 app.use (express.static ('public'));
 
 
-app.use (
-'/api',
-  apiRouter
-);
+// app.use (
+// '/api',
+//   apiRouter
+// );
 
 app.use ('/product', productRouter);
 
