@@ -7,13 +7,21 @@ const recipeSchema = new Schema({
 		type:String,
 		required:true
 	},
-	calories: {
+	servings: {
 		type:Number,
 		required:true
 	},
 	image:{
 		type:Object,
 		required:false
+	},
+	time:{
+		type:Number,
+		required:true,
+	},
+	id:{
+		type:String,
+		required:true
 	}
 })
 

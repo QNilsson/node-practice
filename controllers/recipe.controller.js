@@ -2,8 +2,9 @@ import { Recipe } from '../models/recipe.js'
 
 export const addRecipe = ((req, res) => {
     const recipe = new Recipe({
-        title: req.body.label,
-        calories: req.body.calories,
+        title: req.body.title,
+        servings: req.body.servings,
+        time: req.body.readyInMinutes,
         image: req.body.image,
        
     })
@@ -60,9 +61,9 @@ export const recipes = async (req, res) => {
 
 export const deleteRecipe = async (req, res) => {
     console.log(req.body)
-    const recipeLabel = req.body.label
+    const recipeID = req.body.recipeID
     try {
-        const deletedRecipe= await Recipe.findByIdAndRemove(recipeLabel)
+        const deletedRecipe= await Recipe.findByIdAndRemove(recipeID)
         if (!deletedRecipe) {
             return res.status(400).json({Message: `Recipe to delete not found.`})
         }

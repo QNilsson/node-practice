@@ -10,15 +10,15 @@ const seedMongo = async () => {
     useUnifiedTopology: true,
   });
 
-const options = {
-  method: 'GET',
-  url: 'https://api.edamam.com/search?q=chicken&app_id=${apid}&app_key=${apkey}&to=30',
-  params: {q: 'chicken', to: 30},
-  headers:{
-	  'app_key':`${process.env.REACT_APP_RECIPE_API_KEY}`,
-	  'app_id': `${process.env.REACT_APP_RECIPE_API_ID}`
-  }
-}
+  const options = {
+	method: 'GET',
+	url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search',
+	params: {query: 'chocolate', number: '25', offset: '0'},
+	headers: {
+	  'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
+	  'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+	}
+  };
 try{
 	const response = await axios.request(options)
 	await addRecipes(response.data.d)
@@ -30,8 +30,9 @@ try{
 
 const addRecipe = async (oneRecipe)=>{
 	const recipe = new Recipe({
-		title: oneRecipe.label,
-		calories: oneRecipe.calories,
+		title: oneRecipe.title,
+		servings: oneRecipe.servings,
+		time:oneRecipe.readyInMinutes,
 		image: oneRecipe.image
 
 	})
