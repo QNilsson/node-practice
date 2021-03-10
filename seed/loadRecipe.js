@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 dotenv.config;
 
 const seedMongo = async () => {
-  await mongoose.connect (`${process.env.MONGO_CONNTECTION_STRING}`, {
+  await mongoose.connect (`${process.env.MONGO_CONNECTION_STRING}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -21,7 +21,7 @@ const seedMongo = async () => {
   };
 try{
 	const response = await axios.request(options)
-	await addRecipes(response.data.d)
+	await addRecipes(response.data.results)
 	await mongoose.connection.close()
 }catch(error){
 	console.log(error)
