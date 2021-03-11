@@ -46,6 +46,8 @@ const main = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
+  mongoose.connection.on('connected', () =>console.log('connected'))
+  mongoose.connection.on('error', () => console.log('connected failed'))
 
   app.listen (port, () => {
     console.log (`Example app listening at http://localhost:${port}`);

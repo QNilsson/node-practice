@@ -22,6 +22,7 @@ const seedMongo = async () => {
 try{
 	const response = await axios.request(options)
 	await addRecipes(response.data.results)
+	console.log(response.data.results)
 	await mongoose.connection.close()
 }catch(error){
 	console.log(error)
