@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Recipe} from '../models/recipe.js';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
-dotenv.config;
+dotenv.config();
 
 const seedMongo = async () => {
   await mongoose.connect (`${process.env.MONGO_CONNECTION_STRING}`, {
