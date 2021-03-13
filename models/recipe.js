@@ -12,7 +12,7 @@ const recipeSchema = new Schema({
 		required:true
 	},
 	image:{
-		type:Object,
+		type:String,
 		required:false
 	},
 	time:{
@@ -20,7 +20,7 @@ const recipeSchema = new Schema({
 		required:true,
 	},
 	id:{
-		type:String,
+		type:Number,
 		required:true
 	}
 })

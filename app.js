@@ -41,18 +41,14 @@ app.use((req, res, next) => {
 });
 
 const main = async() => {
-  await mongoose.connect (`${process.env.MONGO_CONNECTION_STRING}`, {
+  await mongoose.connect(`${process.env.MONGO_CONNECTION_STRING}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  mongoose.connection.on('connected', () => console.log ('connected'));
-  mongoose.connection.on('error', () => console.log ('connected failed'));
-
+  
   app.listen(port, () => {
     console.log (`Example app listening at http://localhost:${port}`);
   });
 };
 main ();
-// app.listen(port, () =>{
-// 	console.log(`Example app listening at http://localhost:${port}`)
-// })
+
