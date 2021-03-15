@@ -19,7 +19,7 @@ const seedMongo = async () => {
 	  'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
 	  'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
 	  'Content-Type':'application/json',
-	  "Access-Control-Allow-Methods":"GET,POST,PUT,DELETE"
+	  "Access-Control-Allow-Methods":"GET,POST,PUT,DELETE, OPTIONS"
 	}
   };
 try{
