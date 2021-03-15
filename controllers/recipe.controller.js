@@ -61,17 +61,16 @@ export const recipes = async (req, res) => {
 // }
 
 export const deleteRecipe = async (req, res) => {
-    console.log(req.body)
-    const recipeID = req.body.recipeID
+    const recipeId = req.body.recipeId
     try {
-        const deletedRecipe= await Recipe.findByIdAndRemove(recipeID)
+        const deletedRecipe= await Recipe.findByIdAndRemove(recipeId)
         if (!deletedRecipe) {
             return res.status(400).json({Message: `Recipe to delete not found.`})
         }
         console.log(`Deleted the recipe: ${deletedRecipe}`)
         res.sendStatus(200) // a simple success
     } catch (err) {
-        res.status(400).json({Message: `Invalid Label: ${err}`})
+        res.status(400).json({Message: `Invalid ID: ${err}`})
     }
 
 }
