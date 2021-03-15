@@ -20,7 +20,7 @@ const recipeSchema = new Schema({
 		required:true,
 	},
 	id:{
-		type:Number,
+		type:String,
 		required:false
 	}
 })

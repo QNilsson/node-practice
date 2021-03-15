@@ -62,6 +62,7 @@ export const recipes = async (req, res) => {
 
 export const deleteRecipe = async (req, res) => {
     const recipeId = req.body.recipeId
+    console.log(recipeId)
     try {
         const deletedRecipe= await Recipe.findByIdAndRemove(recipeId)
         if (!deletedRecipe) {
