@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 dotenv.config();
 
 const seedMongo = async () => {
-  await mongoose.connect (`${process.env.MONGO_CONNECTION_STRING}`, {
+  await mongoose.connect (`${process.env.CONNECT_STRING}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
