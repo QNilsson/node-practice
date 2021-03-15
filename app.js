@@ -1,6 +1,6 @@
 //Thor's Class
 import express from 'express';
-import bodyparser from 'body-parser';
+
 import {recipeRouter} from './routes/recipe.router.js';
 
 import mongoose from 'mongoose';
@@ -55,5 +55,5 @@ const main = async() => {
     console.log (`Example app listening at http://localhost:${port}`);
   });
 };
-main ();
+main();
 
