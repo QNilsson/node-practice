@@ -1,8 +1,8 @@
 //Thor's Class
 import express from 'express';
-import bodyParser from 'body-parser';
+import bodyparser from 'body-parser';
 import {recipeRouter} from './routes/recipe.router.js';
-import {productRouter} from './routes/product.route.js';
+
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
@@ -17,13 +17,13 @@ const app = express();
 
 app.use(cors());
 
-// app.use (
-//   bodyParser.urlencoded ({
-//     extended: false
-//   })
-// );
+app.use (
+  express.urlencoded ({
+    extended: true
+  })
+);
 
-app.use(express.json ());
+app.use(express.json());
 
 app.use(express.static ('public'));
 
@@ -32,7 +32,7 @@ app.use(express.static ('public'));
 //   apiRouter
 // );
 
-app.use('/product', productRouter);
+
 
 app.use('/recipe', recipeRouter);
 

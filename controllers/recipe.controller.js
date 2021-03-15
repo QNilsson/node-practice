@@ -1,5 +1,6 @@
 import { Recipe } from '../models/recipe.js'
 
+
 export const addRecipe = ((req, res) => {
     const recipe = new Recipe({
         title: req.body.title,

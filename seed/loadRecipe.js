@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {Recipe} from '../models/recipe.js';
+import {listSchema } from '../models/list.model.js'
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 dotenv.config();
@@ -16,7 +17,8 @@ const seedMongo = async () => {
 	params: {query: 'chocolate', number: '25', offset: '0'},
 	headers: {
 	  'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
-	  'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+	  'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+	  'Content-Type':'application/json'
 	}
   };
 try{
