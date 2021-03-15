@@ -16,4 +16,4 @@ const listSchema = new Schema({
 	}
 });
 
-export const List = mongoose.model("List", listSchema, "RecipeDatabase")
+export const List = mongoose.model("List", listSchema)
