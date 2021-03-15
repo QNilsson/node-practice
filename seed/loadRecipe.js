@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Recipe} from '../models/recipe.js';
-import {listSchema } from '../models/list.model.js'
+
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 dotenv.config();

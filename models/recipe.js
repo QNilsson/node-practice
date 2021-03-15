@@ -16,13 +16,13 @@ const recipeSchema = new Schema({
 		required:false
 	},
 	time:{
-		type:Number,
+		type:String,
 		required:true,
 	},
 	id:{
 		type:Number,
-		required:true
+		required:false
 	}
 })
 
-export const Recipe = mongoose.model('Recipe', recipeSchema, "RecipeDatabase")
+export const Recipe = mongoose.model('Recipe', recipeSchema)

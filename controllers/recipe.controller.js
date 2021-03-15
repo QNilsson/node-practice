@@ -24,7 +24,7 @@ export const addRecipe = ((req, res) => {
 
 export const recipes = async (req, res) => {
     const recipes = await Recipe.find()
-    if (!recipes) {
+    if (!recipes.length) {
         return res.status(400).json({Message: `No recipes found`})
     }
     res.json(recipes)
