@@ -30,6 +30,25 @@ export const recipes = async (req, res) => {
     res.json(recipes)
 }
 
+export const updateRecipe = async(req, res) =>{
+    const recipeId = req.body.data.recipeId
+    console.log(recipeId)
+    const updatedObj = {
+        title:req.body.data.title,
+        servings:req.body.data.servings,
+        time:req.body.data.time,
+        image:req.body.data.image
+    
+}
+try{
+    const recipe = await Recipe.findByIdAndUpdate(recipeId, updatedObj, {new:true})
+    console.log(recipe)
+    res.status(200).json(recipe)
+}catch(err){
+    console.log("error")
+}
+}
+
 // export const getProductById = async (req, res) => {
 //     const prodId = req.body.productId
 //     console.log(prodId)
@@ -62,9 +81,13 @@ export const recipes = async (req, res) => {
 
 export const deleteRecipe = async (req, res) => {
     const recipeId = req.body.recipeId
+    console.log("This is recipeId on controller")
     console.log(recipeId)
+    console.log("made it to controller")
     try {
         const deletedRecipe= await Recipe.findByIdAndRemove(recipeId)
+        console.log(deletedRecipe)
+        console.log("above is deleted")
         if (!deletedRecipe) {
             return res.status(400).json({Message: `Recipe to delete not found.`})
         }
@@ -75,3 +98,4 @@ export const deleteRecipe = async (req, res) => {
     }
 
 }
+
