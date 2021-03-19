@@ -16,11 +16,11 @@ const recipeSchema = new Schema({
 		required:false
 	},
 	time:{
-		type:String,
+		type:Number,
 		required:true,
 	},
 	id:{
-		type:Number,
+		type:String,
 		required:false
 	}
 })

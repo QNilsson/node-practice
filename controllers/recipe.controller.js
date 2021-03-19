@@ -80,12 +80,14 @@ try{
 // }
 
 export const deleteRecipe = async (req, res) => {
+    console.log(req.body)
+    console.log("above is req.body")
     const recipeId = req.body.recipeId
     console.log("This is recipeId on controller")
     console.log(recipeId)
     console.log("made it to controller")
     try {
-        const deletedRecipe= await Recipe.findByIdAndRemove(recipeId)
+        const deletedRecipe= await Recipe.findByIdAndDelete(recipeId)
         console.log(deletedRecipe)
         console.log("above is deleted")
         if (!deletedRecipe) {
