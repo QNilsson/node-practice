@@ -14,10 +14,8 @@ export const addRecipe = ((req, res) => {
         servings: req.body.servings,
         time: req.body.time,
         image: req.body.image,
-       
     });
     try{
-       
         console.log(recipe)
         recipe.save() // save method is provided by Mongoose
         res.json(recipe)
@@ -51,25 +49,38 @@ try{
 
 
 
-export const deleteRecipe = async (req, res) => {
-    console.log(req.body)
-    console.log("above is req.body")
-    const recipeId = req.body.recipeId
-    console.log("This is recipeId on controller")
-    console.log(recipeId)
-    console.log("made it to controller")
-    try {
-        const deletedRecipe= await Recipe.findByIdAndDelete(recipeId)
-        console.log(deletedRecipe)
-        console.log("above is deleted")
-        if (!deletedRecipe) {
-            return res.status(400).json({Message: `Recipe to delete not found.`})
-        }
-        console.log(`Deleted the recipe: ${deletedRecipe}`)
-        res.sendStatus(200) // a simple success
-    } catch (err) {
-        res.status(400).json({Message: `Invalid ID: ${err}`})
-    }
+// export const deleteRecipe = async (req, res) => {
+//     console.log(req.body)
+//     console.log("above is req.body")
+//     const recipeId = req.body.recipeId
+//     console.log("This is recipeId on controller")
+//     console.log(recipeId)
+//     console.log("made it to controller")
+//     try {
+//         const deletedRecipe= await Recipe.findByIdAndDelete(recipeId )
+//         console.log(deletedRecipe)
+//         console.log("above is deleted")
+//         if (!deletedRecipe) {
+//             return res.status(400).json({Message: `Recipe to delete not found.`})
+//         }
+//         console.log(`Deleted the recipe: ${deletedRecipe}`)
+//         res.sendStatus(200) // a simple success
+//     } catch (err) {
+//         res.status(400).json({Message: `Invalid ID: ${err}`})
+//     }
 
+// }
+
+export const deleteRecipe = async (req, res)=>{
+    console.log(req.body)
+    const recipeId = req.body.id
+    try{
+        Recipe.findByIdAndDelete(recipeId, (err, recipe) =>{
+if(err) res.status(400).son({Message: `no recipe to delete ${err}`});
+res.status(200).json({success:true})
+        })
+    }catch(err){
+        res.status(400).json({Message:  `could not delete ${err}`})
+    }
 }
 

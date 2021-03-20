@@ -14,7 +14,7 @@ const seedMongo = async () => {
   const options = {
 	method: 'GET',
 	url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search',
-	params: {query: 'chocolate', number: '25', offset: '0'},
+	params: {query: 'chocolate', number: '5', offset: '0'},
 	headers: {
 	  'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
 	  'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
