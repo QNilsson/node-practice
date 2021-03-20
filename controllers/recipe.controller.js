@@ -5,7 +5,7 @@ export const addRecipe = ((req, res) => {
     const recipe = new Recipe({
         title: req.body.title,
         servings: req.body.servings,
-        time: req.body.readyInMinutes,
+        time: req.body.time,
         image: req.body.image,
        
     })
@@ -14,13 +14,7 @@ export const addRecipe = ((req, res) => {
     res.json(recipe)
 })
 
-/* export const getAllProducts = ((req, res) => {
-    Product.find()
-        .then(products => {
-        res.json(products)
-        })
-    .catch(err => console.log(err))
-}) */
+
 
 export const recipes = async (req, res) => {
     const recipes = await Recipe.find()

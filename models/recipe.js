@@ -11,14 +11,15 @@ const recipeSchema = new Schema({
 		type:Number,
 		required:true
 	},
-	image:{
-		type:String,
-		required:false
-	},
 	time:{
 		type:Number,
 		required:true,
 	},
+	image:{
+		type:String,
+		required:false
+	},
+	
 	id:{
 		type:String,
 		required:false
