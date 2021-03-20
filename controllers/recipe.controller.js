@@ -1,5 +1,12 @@
 import { Recipe } from '../models/recipe.js'
 
+export const recipes = async (req, res) => {
+    const recipes = await Recipe.find()
+    if (!recipes.length) {
+        return res.status(400).json({Message: `No recipes found`})
+    }
+    res.json(recipes)
+}
 
 export const addRecipe = ((req, res) => {
     const recipe = new Recipe({
@@ -8,21 +15,19 @@ export const addRecipe = ((req, res) => {
         time: req.body.time,
         image: req.body.image,
        
-    })
-    console.log(recipe)
-    recipe.save() // save method is provided by Mongoose
-    res.json(recipe)
-})
-
-
-
-export const recipes = async (req, res) => {
-    const recipes = await Recipe.find()
-    if (!recipes.length) {
-        return res.status(400).json({Message: `No recipes found`})
+    });
+    try{
+       
+        console.log(recipe)
+        recipe.save() // save method is provided by Mongoose
+        res.json(recipe)
+        res.status(200).json({Message: "success add"})
+    }catch(err){
+        console.log("error")
+        res.status(400).json({Message: `Could not create ${err}`})
     }
-    res.json(recipes)
-}
+   
+})
 
 export const updateRecipe = async(req, res) =>{
     const recipeId = req.body.data.recipeId
@@ -37,41 +42,14 @@ export const updateRecipe = async(req, res) =>{
 try{
     const recipe = await Recipe.findByIdAndUpdate(recipeId, updatedObj, {new:true})
     console.log(recipe)
+    console.log("success")
     res.status(200).json(recipe)
 }catch(err){
     console.log("error")
 }
 }
 
-// export const getProductById = async (req, res) => {
-//     const prodId = req.body.productId
-//     console.log(prodId)
-//     try {
-//         const product = await Product.findById(prodId)
-//         if (!product) {
-//             return res.status(404).json({ Message: 'Product not Found' })
-//         }
-//         res.json(product)
-//     } catch(err) {
-//         res.status(400).json({Message: `Invalid ID: ${err}`})
-//     }
-// }
 
-// export const putEditProduct = async (req, res) => {
-//     const prodId = req.body.productId
-//     const updatedObj = {
-//         title: req.body.title,
-//         price: req.body.price, // typeof ? (if string then parsed by Mongoose, else number by body-parser)
-//         description: req.body.description,
-//         imageUrl: req.body.imageUrl,
-//     }
-//     try {
-//         const product = await Product.findByIdAndUpdate(prodId, updatedObj, { new: true })
-//         res.json(product)
-//     } catch (err) {
-//         res.status(400).json({Message: `Could not update: ${err}`})
-//     }
-// }
 
 export const deleteRecipe = async (req, res) => {
     console.log(req.body)
