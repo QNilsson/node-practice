@@ -48,12 +48,8 @@ export const updateRecipe = async (req, res) => {
 };
 
 export const deleteRecipe = async (req, res) => {
-    console.log(`This is req.body: ${req.body}`)
-    
-    const recipeId = req.body.recipeId
+    const recipeId = req.body.recipeId  
     console.log(`This is recipeId on controller: ${recipeId}`)
-
-    console.log("made it to controller")
     try {
         const deletedRecipe= await Recipe.findByIdAndRemove(recipeId )
         console.log(deletedRecipe)
@@ -70,8 +66,8 @@ export const deleteRecipe = async (req, res) => {
 }
 
 // export const deleteRecipe = async (req, res) => {
-//   console.log (req.body);
-//   const recipeId = req.body._id;
+//   console.log (req.params);
+//   const recipeId = req.params._id;
 //   console.log(`this is recipeID ${recipeId}`)
 //   try {
 //     Recipe.findByIdAndDelete (recipeId, (err, recipe) => {
