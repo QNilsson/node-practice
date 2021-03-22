@@ -55,7 +55,7 @@ export const deleteRecipe = async (req, res) => {
         console.log(deletedRecipe)
         console.log(`This is deletedRecipe: ${deletedRecipe}`)
         if (!deletedRecipe) {
-            return res.status(400).json({Message: `Recipe to delete not found.`})
+            return res.status(400).json({Message: `Recipe to delete not found. ${deletedRecipe}`})
         }
         console.log(`Deleted the recipe: ${deletedRecipe}`)
         res.sendStatus(200) // a simple success
@@ -65,16 +65,3 @@ export const deleteRecipe = async (req, res) => {
 
 }
 
-// export const deleteRecipe = async (req, res) => {
-//   console.log (req.params);
-//   const recipeId = req.params._id;
-//   console.log(`this is recipeID ${recipeId}`)
-//   try {
-//     Recipe.findByIdAndDelete (recipeId, (err, recipe) => {
-//       if (err) res.status (400).json ({Message: `no recipe to delete ${err}`});
-//       res.status (200).json ({Message: `deleted recipe ${recipeId}`});
-//     });
-//   } catch (err) {
-//     res.status (400).json ({Message: `could not delete ${err}`});
-//   }
-// };

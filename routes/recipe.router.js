@@ -4,5 +4,5 @@ import { addRecipe, recipes, deleteRecipe, updateRecipe} from '../controllers/re
 
 recipeRouter.post('/add', addRecipe)
 recipeRouter.get('/', recipes)//done
-recipeRouter.delete('/delete', deleteRecipe)
+recipeRouter.delete('/delete', deleteRecipe)//done
 recipeRouter.put('/update', updateRecipe)//done
