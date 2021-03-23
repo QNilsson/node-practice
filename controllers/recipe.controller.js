@@ -8,7 +8,8 @@ export const recipes = async (req, res) => {
   res.json (recipes);
 };
 
-export const addRecipe = (req, res) => {
+
+export const addRecipe = async (req, res) => {
   const recipe = new Recipe ({
     title: req.body.title,
     servings: req.body.servings,
@@ -20,6 +21,7 @@ export const addRecipe = (req, res) => {
     recipe.save (); // save method is provided by Mongoose
     res.json (recipe);
     res.status (200).json ({Message: 'success add'});
+    console.log(recipe)
   } catch (err) {
     console.log ('error');
     res.status (400).json ({Message: `Could not create ${err}`});
